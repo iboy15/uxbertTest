@@ -89,6 +89,7 @@ class DetailsScreen extends React.Component {
       libraryListAdded,
       libraryFavoritesAdded,
     } = this.props;
+    console.log(result);
     return (
       <MainView>
         <LinearGradient

@@ -5,6 +5,7 @@ import {withTheme, Icon} from 'react-native-material-ui';
 import {SharedElement} from 'react-navigation-shared-element';
 import {COLOR} from 'react-native-material-ui';
 import Share from 'react-native-share';
+import StarRating from 'react-native-star-rating';
 const styles = StyleSheet.create({
   container: {
     padding: 20,
@@ -73,7 +74,7 @@ class DetailsHeader extends React.Component {
   };
   render() {
     const {result, theme} = this.props;
-
+    console.log(parseInt(result.imdbRating));
     const {primaryColor} = theme.palette;
     return (
       <View style={[styles.container, {backgroundColor: primaryColor}]}>
@@ -82,6 +83,24 @@ class DetailsHeader extends React.Component {
             <Text style={[styles.text, styles.titleText]}>{result.Title}</Text>
           </SharedElement>
         </View>
+        <View style={{height: 15}} />
+        <Text style={{color: 'white', fontSize: 20}}>
+          Ratings{'  '}
+          <Text style={{color: 'white', fontSize: 40}}>
+            {result.imdbRating}
+          </Text>
+        </Text>
+        <View style={{width: '60%', marginTop: 5}}>
+          <StarRating
+            disabled={false}
+            fullStarColor={'#FFD700'}
+            maxStars={10}
+            starSize={20}
+            rating={parseInt(result.imdbRating)}
+            // selectedStar={(rating) => this.onStarRatingPress(rating)}
+          />
+        </View>
+        <View style={{height: 20}} />
         <View style={styles.line}>
           <View style={[styles.item, styles.year]}>
             <Icon

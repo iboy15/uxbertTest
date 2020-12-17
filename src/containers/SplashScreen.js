@@ -14,13 +14,13 @@ class SplashScreen extends React.Component {
     return (
       <View style={styles.viewStyles}>
         <LinearGradient
-          colors={['#000000', '#434343']}
+          colors={['#434343', '#000000']}
           style={{position: 'absolute', bottom: 0, left: 0, height, width}}
           start={{x: 0, y: 1}}
           end={{x: 1, y: 1}}
         />
         <Text style={styles.textStyles}>
-          UXBERT Usability Lab, Project ISHAK
+          UXBERT Usability Lab,{'\n'} Project ISHAK
         </Text>
       </View>
     );
@@ -35,8 +35,9 @@ const styles = {
     backgroundColor: 'orange',
   },
   textStyles: {
+    textAlign: 'center',
     color: 'white',
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
   },
 };
