@@ -9,7 +9,7 @@ export function fetchDetails(id) {
     const url = `http://www.omdbapi.com/?apikey=${apiKey}&i=${encodeURIComponent(
       id,
     )}&ype=movie&plot=full`;
-    console.log('DETAIL URL', url);
+
     fetch(url)
       .then((response) => response.json())
       .then((json) => {

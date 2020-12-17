@@ -65,16 +65,15 @@ class DetailsHeader extends React.Component {
 
     try {
       const ShareResponse = await Share.open(shareOptions);
-      console.log(ShareResponse);
+
       // setResult(JSON.stringify(ShareResponse, null, 2));
     } catch (error) {
-      console.log('Error =>', error);
       // setResult('error: '.concat(getErrorString(error)));
     }
   };
   render() {
     const {result, theme} = this.props;
-    console.log(parseInt(result.imdbRating));
+
     const {primaryColor} = theme.palette;
     return (
       <View style={[styles.container, {backgroundColor: primaryColor}]}>

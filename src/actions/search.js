@@ -11,13 +11,12 @@ export function searchTermChange(searchTerm) {
 }
 
 export function search(searchTerm) {
-  console.log(apiKey);
   return (dispatch) => {
     dispatch({type: 'SEARCH_REQUEST'});
     const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(
       searchTerm,
     )}&ype=movie`;
-    console.log('URL', url);
+
     fetch(url)
       .then((response) => response.json())
       .then((json) => {

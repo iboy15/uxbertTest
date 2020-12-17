@@ -1,15 +1,26 @@
 import React from 'react';
-import {View, Text, Dimensions} from 'react-native';
+import {View, Text, Dimensions, Animated} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {COLOR} from 'react-native-material-ui';
 const {width, height} = Dimensions.get('screen');
 class SplashScreen extends React.Component {
+  state = {
+    fadeAnim: new Animated.Value(0),
+  };
   async componentDidMount() {
+    this.fadeIn();
     setTimeout(() => {
       this.props.navigation.navigate('HomeScreen');
-    }, 1000);
+    }, 2000);
   }
-
+  fadeIn = () => {
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.timing(this.state.fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
   render() {
     return (
       <View style={styles.viewStyles}>
@@ -19,25 +30,38 @@ class SplashScreen extends React.Component {
           start={{x: 0, y: 1}}
           end={{x: 1, y: 1}}
         />
-        <Text style={styles.textStyles}>
-          UXBERT Usability Lab,{'\n'} Project ISHAK
-        </Text>
+        <Animated.View
+          style={[
+            styles.fadingContainer,
+            {
+              opacity: this.state.fadeAnim, // Bind opacity to animated value
+            },
+          ]}>
+          <Text style={styles.textStyles}>UXBERT{'\n'} Usability Lab</Text>
+        </Animated.View>
+        <Text style={styles.credit}>Project ISHAK</Text>
       </View>
     );
   }
 }
 
 const styles = {
+  credit: {
+    position: 'absolute',
+    bottom: 50,
+    alignSelf: 'center',
+    color: 'white',
+    fontSize: 18,
+  },
   viewStyles: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'orange',
   },
   textStyles: {
     textAlign: 'center',
-    color: 'white',
-    fontSize: 22,
+    color: COLOR.deepOrange500,
+    fontSize: 30,
     fontWeight: 'bold',
   },
 };
