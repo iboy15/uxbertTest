@@ -96,7 +96,7 @@ class DetailsHeader extends React.Component {
             fullStarColor={'#FFD700'}
             maxStars={10}
             starSize={20}
-            rating={parseInt(result.imdbRating)}
+            rating={result.imdbRating}
             // selectedStar={(rating) => this.onStarRatingPress(rating)}
           />
         </View>
@@ -129,6 +129,11 @@ class DetailsHeader extends React.Component {
               color="white"
             />
           </TouchableOpacity>
+        </View>
+        <View style={{marginVertical: 10}}>
+          <Text style={[styles.text, styles.durationText]}>
+            Released : {result.Released}
+          </Text>
         </View>
         <View style={styles.line}>
           <View style={[styles.item, styles.genre]}>
