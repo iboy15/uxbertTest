@@ -3,16 +3,22 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import HomeScreen from './containers/HomeScreen';
 import SearchScreen from './containers/SearchScreen';
+import SplashScreen from './containers/SplashScreen';
 import DetailsScreen from './containers/DetailScreen';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 
 const Stack = createSharedElementStackNavigator();
 const StackNavigator = () => (
   <Stack.Navigator
-    initialRouteName={'HomeScreen'}
+    initialRouteName={'SplashScreen'}
     screenOptions={{
       headerShown: false,
     }}>
+    <Stack.Screen
+      name="SplashScreen"
+      component={SplashScreen}
+      options={{headerShown: false}}
+    />
     <Stack.Screen
       name="HomeScreen"
       component={HomeScreen}

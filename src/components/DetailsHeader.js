@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {withTheme, Icon} from 'react-native-material-ui';
 import {SharedElement} from 'react-navigation-shared-element';
 import {COLOR} from 'react-native-material-ui';
+import Share from 'react-native-share';
 const styles = StyleSheet.create({
   container: {
     padding: 20,
@@ -54,8 +55,25 @@ class DetailsHeader extends React.Component {
     result: PropTypes.object.isRequired,
   };
 
+  shareSingleImage = async (url, title) => {
+    const shareOptions = {
+      title: title,
+      url: url,
+      failOnCancel: false,
+    };
+
+    try {
+      const ShareResponse = await Share.open(shareOptions);
+      console.log(ShareResponse);
+      // setResult(JSON.stringify(ShareResponse, null, 2));
+    } catch (error) {
+      console.log('Error =>', error);
+      // setResult('error: '.concat(getErrorString(error)));
+    }
+  };
   render() {
     const {result, theme} = this.props;
+
     const {primaryColor} = theme.palette;
     return (
       <View style={[styles.container, {backgroundColor: primaryColor}]}>
@@ -83,6 +101,15 @@ class DetailsHeader extends React.Component {
               {result.Runtime}
             </Text>
           </View>
+          <TouchableOpacity
+            style={{marginLeft: 'auto'}}
+            onPress={() => this.shareSingleImage(result.Poster, result.Title)}>
+            <Icon
+              style={styles.icon}
+              name="share-social-outline"
+              color="white"
+            />
+          </TouchableOpacity>
         </View>
         <View style={styles.line}>
           <View style={[styles.item, styles.genre]}>
